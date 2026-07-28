@@ -48,7 +48,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   /// @Snippet(path: "Policies_ListPolicies")
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamV2.ListPoliciesResponse {
+  ) async throws -> GoogleIAMV2.ListPoliciesResponse {
     try await self.inner.listPolicies(request: request, options: options)
   }
 
@@ -62,7 +62,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Policy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIamV2.ListPoliciesResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listPolicies(request: request, options: options)
@@ -75,7 +75,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   /// @Snippet(path: "Policies_GetPolicy")
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamV2.Policy {
+  ) async throws -> GoogleIAMV2.Policy {
     try await self.inner.getPolicy(request: request, options: options)
   }
 
@@ -312,7 +312,7 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PoliciesProtocol {
     /// See `PoliciesClient.listPolicies`.
-    func listPolicies(request: ListPoliciesRequest) async throws -> GoogleIamV2.ListPoliciesResponse
+    func listPolicies(request: ListPoliciesRequest) async throws -> GoogleIAMV2.ListPoliciesResponse
 
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
@@ -325,12 +325,12 @@ extension Clients {
     ) throws -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.getPolicy`.
-    func getPolicy(request: GetPolicyRequest) async throws -> GoogleIamV2.Policy
+    func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy
 
     /// See `PoliciesClient.getPolicy`.
     func getPolicy(
       name: Swift.String,
-    ) async throws -> GoogleIamV2.Policy
+    ) async throws -> GoogleIAMV2.Policy
 
     /// See `PoliciesClient.createPolicy`.
     func createPolicy(request: CreatePolicyRequest) async throws -> GoogleLongrunning.Operation
@@ -368,7 +368,7 @@ extension Clients {
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.ListPoliciesResponse
+    ) async throws -> GoogleIAMV2.ListPoliciesResponse
 
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
@@ -378,7 +378,7 @@ extension Clients {
     /// See `PoliciesClient.getPolicy`.
     func getPolicy(
       request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.Policy
+    ) async throws -> GoogleIAMV2.Policy
 
     /// See `PoliciesClient.createPolicy`.
     func createPolicy(
@@ -415,14 +415,14 @@ extension Clients {
 // Default implementations
 extension Clients.PoliciesProtocol {
   public func listPolicies(request: ListPoliciesRequest) async throws
-    -> GoogleIamV2.ListPoliciesResponse
+    -> GoogleIAMV2.ListPoliciesResponse
   {
     try await self.listPolicies(request: request, options: .init())
   }
 
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamV2.ListPoliciesResponse {
+  ) async throws -> GoogleIAMV2.ListPoliciesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -435,7 +435,7 @@ extension Clients.PoliciesProtocol {
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Policy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIamV2.ListPoliciesResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -450,19 +450,19 @@ extension Clients.PoliciesProtocol {
     return try self.listPolicies(byItem: request)
   }
 
-  public func getPolicy(request: GetPolicyRequest) async throws -> GoogleIamV2.Policy {
+  public func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy {
     try await self.getPolicy(request: request, options: .init())
   }
 
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamV2.Policy {
+  ) async throws -> GoogleIAMV2.Policy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getPolicy(
     name: Swift.String,
-  ) async throws -> GoogleIamV2.Policy {
+  ) async throws -> GoogleIAMV2.Policy {
     let request = GetPolicyRequest().with {
       $0.name = name
     }

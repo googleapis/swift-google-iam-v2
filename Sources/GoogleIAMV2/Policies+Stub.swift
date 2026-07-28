@@ -27,11 +27,11 @@ extension Clients {
   protocol PoliciesStub {
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.ListPoliciesResponse
+    ) async throws -> GoogleIAMV2.ListPoliciesResponse
 
     func getPolicy(
       request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.Policy
+    ) async throws -> GoogleIAMV2.Policy
 
     func createPolicy(
       request: CreatePolicyRequest, options: GoogleCloudGax.RequestOptions
@@ -60,7 +60,7 @@ extension Clients {
 
     public func listPolicies(
       request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.ListPoliciesResponse {
+    ) async throws -> GoogleIAMV2.ListPoliciesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -78,12 +78,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamV2.ListPoliciesResponse.self, from: data)
+        GoogleIAMV2.ListPoliciesResponse.self, from: data)
     }
 
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamV2.Policy {
+    ) async throws -> GoogleIAMV2.Policy {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -98,7 +98,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamV2.Policy.self, from: data)
+        GoogleIAMV2.Policy.self, from: data)
     }
 
     public func createPolicy(
